@@ -7,6 +7,7 @@ pub struct CliArgs {
     ///The url of the server we want to stress
     #[arg(short, long)]
     url: String,
+    ///How many simultanious stressors?
     #[arg(short, long)]
     threads: usize,
 }

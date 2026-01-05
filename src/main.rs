@@ -1,5 +1,9 @@
+use crate::cli::CliArgs;
+use clap::Parser;
+
 mod cli;
+mod stressor;
 
 fn main() {
-    println!("Hello, world!");
+    let args = CliArgs::parse();
 }
