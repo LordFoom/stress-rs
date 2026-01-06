@@ -6,4 +6,5 @@ mod stressor;
 
 fn main() {
     let args = CliArgs::parse();
+    args.url;
 }

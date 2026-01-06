@@ -1,6 +1,7 @@
-use reqwest::Client;
+use derive_builder::Builder;
 ///Information of the uri we are going to stress,
 ///and how to stress it
+#[derive(Builder)]
 struct Stressor {
     pub description: String,
     pub raw_strength: f32,
