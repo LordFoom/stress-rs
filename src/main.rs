@@ -14,7 +14,9 @@ fn main() -> Result<()> {
     let url_to_stress = args.url;
     let mut vec_threads = Vec::new();
     for i in 1..=num_threads {
-        let jh = thread::spawn(|| {});
+        let jh = thread::spawn(|| {
+            let stressor = Stressor::new()
+        });
         vec_threads.push(jh);
     }
 
