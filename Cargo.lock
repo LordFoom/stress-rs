@@ -1206,6 +1206,7 @@ dependencies = [
  "clap",
  "derive_builder",
  "reqwest",
+ "tokio",
 ]
 
 [[package]]
