@@ -10,18 +10,23 @@ pub struct Stressor {
 }
 
 impl Stressor {
-    pub fn new(description: String, raw_strength: f32) -> Self {
+    pub fn default() -> Self {
         Self {
-            description,
-            //how much strength to apply? percentage
-            raw_strength,
-            num_threads: todo!(),
-            url: todo!(),
+            description: "default".to_string(),
+            reqwest_delay: 1.0,
+            url: "unknown".to_string(),
         }
     }
 
-    pub fn description(&mut self, description: String) -> Self {
+    pub fn description(&mut self, description: String) {
         self.description = description;
-        self
+    }
+
+    pub fn reqwest_delay(&mut self, reqwest_delay: f32) {
+        self.reqwest_delay = reqwest_delay;
+    }
+
+    pub fn url(&mut self, url: String) {
+        self.url = url;
     }
 }
