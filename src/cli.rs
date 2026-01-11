@@ -10,4 +10,8 @@ pub struct CliArgs {
     ///How many simultanious stressors?
     #[arg(short, long)]
     pub threads: usize,
+    #[arg(short, long)]
+    ///What description to give them
+    ///TODO: store stressing's in a sqlite db
+    pub description: Option<String>,
 }
