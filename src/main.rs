@@ -1,9 +1,10 @@
 use std::thread;
 
 use crate::cli::CliArgs;
+use crate::stressor::Stressor;
 use anyhow::Result;
 use anyhow::anyhow;
-use clap::stressor::Parser;
+use clap::Parser;
 
 mod cli;
 mod stressor;
@@ -18,7 +19,6 @@ fn main() -> Result<()> {
         let jh = thread::spawn(|| {
             let stressor = Stressor::default()
                 .optional_description(optional_description)
-                .num_threads(num_threads)
                 .url(url_to_stress);
         });
         vec_threads.push(jh);

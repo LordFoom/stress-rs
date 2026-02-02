@@ -1,3 +1,4 @@
+use anyhow::Result;
 // use derive_builder::Builder;
 ///Information of the uri we are going to stress,
 ///and how to stress it
@@ -7,6 +8,8 @@ pub struct Stressor {
     ///Minimum length between requests
     pub reqwest_delay: f32,
     pub url: String,
+    ///Number of the thread
+    pub thread_num: usize,
 }
 
 impl Stressor {
@@ -15,6 +18,7 @@ impl Stressor {
             description: "default".to_string(),
             reqwest_delay: 1.0,
             url: "unknown".to_string(),
+            thread_num: 0,
         }
     }
 
@@ -39,5 +43,9 @@ impl Stressor {
     pub fn url(&mut self, url: String) -> &mut Stressor {
         self.url = url;
         self
+    }
+
+    pub fn stress(&self) -> Result<()> {
+        Ok(())
     }
 }
