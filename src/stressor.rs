@@ -8,7 +8,7 @@ pub struct Stressor {
     ///Minimum length between requests
     pub reqwest_delay: f32,
     pub url: String,
-    ///Number of the thread
+    ///Number of this thread
     pub thread_num: usize,
 }
 
@@ -47,5 +47,10 @@ impl Stressor {
 
     pub fn stress(&self) -> Result<()> {
         Ok(())
+    }
+
+    pub fn thread_num(&mut self, thread_num: usize) -> &mut Stressor {
+        self.thread_num = thread_num;
+        self
     }
 }

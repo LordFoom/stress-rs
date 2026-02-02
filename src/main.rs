@@ -12,14 +12,15 @@ mod stressor;
 fn main() -> Result<()> {
     let args = CliArgs::parse();
     let num_threads = args.threads;
-    let url_to_stress = args.url;
+    // let url_to_stress = args.url;
     let optional_description = args.description;
     let mut vec_threads = Vec::new();
     for i in 1..=num_threads {
         let jh = thread::spawn(|| {
             let stressor = Stressor::default()
                 .optional_description(optional_description)
-                .url(url_to_stress);
+                .thread_num(i)
+                .url(args.url);
         });
         vec_threads.push(jh);
     }
