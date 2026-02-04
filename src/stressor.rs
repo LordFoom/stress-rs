@@ -54,3 +54,7 @@ impl Stressor {
         self
     }
 }
+
+pub async fn stress(stressor: &Stressor) -> Result<()> {
+    Ok(())
+}
