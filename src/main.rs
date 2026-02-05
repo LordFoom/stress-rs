@@ -23,6 +23,7 @@ fn main() -> Result<()> {
                 .optional_description(our_desc)
                 .thread_num(i)
                 .url(our_url);
+            stress(stressor);
         });
         vec_threads.push(jh);
     }

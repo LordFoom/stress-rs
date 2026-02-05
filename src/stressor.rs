@@ -1,4 +1,5 @@
 use anyhow::Result;
+use reqwest::Client;
 // use derive_builder::Builder;
 ///Information of the uri we are going to stress,
 ///and how to stress it
@@ -10,6 +11,8 @@ pub struct Stressor {
     pub url: String,
     ///Number of this thread
     pub thread_num: usize,
+    ///How we make calls, in the struct to prevent re-initialization
+    pub httpClient: Client,
 }
 
 impl Stressor {
@@ -45,10 +48,6 @@ impl Stressor {
         self
     }
 
-    pub fn stress(&self) -> Result<()> {
-        Ok(())
-    }
-
     pub fn thread_num(&mut self, thread_num: usize) -> &mut Stressor {
         self.thread_num = thread_num;
         self
@@ -56,5 +55,6 @@ impl Stressor {
 }
 
 pub async fn stress(stressor: &Stressor) -> Result<()> {
-    Ok(())
+    //we support get to begin
+    stressor.Ok(())
 }
