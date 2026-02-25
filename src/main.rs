@@ -2,6 +2,7 @@ use std::thread;
 
 use crate::cli::CliArgs;
 use crate::stressor::Stressor;
+use crate::stressor::stress;
 use anyhow::Result;
 use anyhow::anyhow;
 use clap::Parser;
@@ -19,7 +20,8 @@ fn main() -> Result<()> {
         let our_url = url_to_stress.clone();
         let our_desc = optional_description.clone();
         let jh = thread::spawn(move || {
-            let stressor = Stressor::default()
+            let mut binding = Stressor::default();
+            let stressor = binding
                 .optional_description(our_desc)
                 .thread_num(i)
                 .url(our_url);
