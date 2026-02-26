@@ -10,7 +10,8 @@ use clap::Parser;
 mod cli;
 mod stressor;
 
-fn main() -> Result<()> {
+#[tokio::main]
+async fn main() -> Result<()> {
     let args = CliArgs::parse();
     let num_threads = args.threads;
     let url_to_stress = args.url.clone();
@@ -19,19 +20,21 @@ fn main() -> Result<()> {
     for i in 1..=num_threads {
         let our_url = url_to_stress.clone();
         let our_desc = optional_description.clone();
-        let jh = thread::spawn(move || {
+        let jh = tokio::spawn(async move {
             let mut binding = Stressor::default();
             let stressor = binding
                 .optional_description(our_desc)
                 .thread_num(i)
                 .url(our_url);
-            stress(stressor);
+            stress(stressor).await
         });
         vec_threads.push(jh);
     }
 
     for th in vec_threads {
-        th.join().map_err(|_| anyhow!("Thread panicked"))?;
+        th.await
+            .map_err(|_| anyhow!("Thread panicked"))?
+            .map_err(|e| anyhow!("Stress failed: {e}"))?
     }
     Ok(())
 }
